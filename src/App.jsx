@@ -1,5 +1,3 @@
-// App.jsx
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./component/Home/Home";
 import About from "./component/About/About";
@@ -9,11 +7,11 @@ import MainLayout from "./layout/MainLayout";
 const routes = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />, // <-- Asosiy layout
+    element: <MainLayout />, 
     children: [
       { index: true, element: <Home /> },
       { path: "about", element: <About /> },
-      { path: "return", element: <Return /> }, // <-- MUHIM: route qo‘shilgan
+      { path: "return", element: <Return /> },
     ],
   },
 ]);
