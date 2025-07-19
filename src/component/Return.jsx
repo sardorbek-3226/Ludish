@@ -35,7 +35,7 @@ const Return = () => {
   const { data, isPending, error } = useFetch(url);
 
   return (
-    <div className="mt-15 mb-10 px-4 py-10 bg-gradient-to-b from-white to-blue-50">
+    <div className="mt-16 mb-10 px-4 py-10 bg-gradient-to-b from-white to-blue-50 min-h-[80vh]">
       <form
         onSubmit={handleSubmit}
         className="mb-10 flex flex-col sm:flex-row items-center justify-center gap-4"
@@ -45,13 +45,13 @@ const Return = () => {
           <input
             type="text"
             placeholder="Search for photos..."
-            className="pl-9 pr-4 py-1 text-lg w-full rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="pl-9 pr-4 py-2 text-lg w-full rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
             onChange={(e) => setSearchParams(e.target.value)}
           />
         </div>
         <button
           type="submit"
-          className="bg-black/80 transition-all duration-500 hover:bg-black/40 text-white px-6 py-1.5 rounded-lg shadow font-medium"
+          className="bg-black/80 transition-all duration-300 hover:bg-black/40 text-white px-6 py-2 rounded-lg shadow font-medium"
         >
           Search
         </button>
@@ -64,8 +64,15 @@ const Return = () => {
           Loading images...
         </p>
       )}
+
       {error && (
-        <p className="text-center text-red-500 text-lg">Error: {error}</p>
+        <p className="text-center text-red-500 text-lg">Malumot qidiring!</p>
+      )}
+
+      {data?.results?.length === 0 && !isPending && (
+        <p className="text-center text-gray-500 text-lg">
+          Hech qanday rasm topilmadi.
+        </p>
       )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -81,7 +88,7 @@ const Return = () => {
                 onClick={() => setModalImage(image)}
                 className="h-[230px] w-full object-cover cursor-pointer hover:opacity-90 transition"
               />
-              <button className="absolute top-2 right-2 ">
+              <button className="absolute top-2 right-2">
                 <FaRegHeart className="text-red-500 text-lg" />
               </button>
             </div>
@@ -89,13 +96,13 @@ const Return = () => {
               <h3 className="text-lg font-semibold text-gray-800 mb-1 line-clamp-1">
                 {image.alt_description || "Untitled"}
               </h3>
-
-              <p className="text-md text-gray-700 font-bold  italic mb-2">
+              <p className="text-md text-gray-700 font-bold italic mb-2">
                 {image.user.name}
               </p>
               <a
                 href={image.links.download}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm text-black/40 hover:text-black/90 transition-all hover:underline"
               >
                 <FaDownload /> Download
@@ -105,7 +112,6 @@ const Return = () => {
         ))}
       </div>
 
-      {/* Modal view */}
       {modalImage && (
         <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center px-4">
           <div className="relative max-w-3xl w-full">
