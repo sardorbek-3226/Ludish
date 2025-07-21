@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FaSearch, FaCheckCircle, FaRocket, FaCode } from "react-icons/fa";
+import { FaSearch , FaRocket, FaCode } from "react-icons/fa";
 import { SiUnsplash } from "react-icons/si";
 
 const Home = () => {

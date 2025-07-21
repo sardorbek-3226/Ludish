@@ -7,7 +7,7 @@ import MainLayout from "./layout/MainLayout";
 const routes = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />, 
+    element: <MainLayout />,
     children: [
       { index: true, element: <Home /> },
       { path: "about", element: <About /> },
